@@ -79,12 +79,13 @@ public class MainWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Icon icon1 = new ImageIcon("images\\plus.PNG");
-		Icon icon2 = new ImageIcon("images\\minus.PNG");
-		Icon icon3 = new ImageIcon("images\\searching.PNG");
-		Icon icon4 = new ImageIcon("images\\user.PNG");
-		Icon icon5 = new ImageIcon("images\\save.PNG");
-		Icon icon6 = new ImageIcon("images\\cross-button.PNG");
+		
+		ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/plus.png"));
+		ImageIcon icon2 = new ImageIcon(this.getClass().getResource("/minus.png"));
+		ImageIcon icon3 = new ImageIcon(this.getClass().getResource("/searching.png")); 
+		ImageIcon icon4 = new ImageIcon(this.getClass().getResource("/user.png")); 
+		ImageIcon icon5 = new ImageIcon(this.getClass().getResource("/save.png")); 
+		ImageIcon icon6 = new ImageIcon(this.getClass().getResource("/cross-button.png")); 
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(153, 0, 204), 2));
