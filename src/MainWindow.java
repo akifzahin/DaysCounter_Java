@@ -20,6 +20,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 import javax.swing.JTextField;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -32,6 +36,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
 
 public class MainWindow extends JFrame {
 
@@ -66,7 +71,7 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("100 Days Counter");
+		setTitle("Days Counter");
 		setBounds(1500, 100, 332, 504);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 0, 153));
@@ -79,6 +84,7 @@ public class MainWindow extends JFrame {
 		Icon icon3 = new ImageIcon("images\\searching.PNG");
 		Icon icon4 = new ImageIcon("images\\user.PNG");
 		Icon icon5 = new ImageIcon("images\\save.PNG");
+		Icon icon6 = new ImageIcon("images\\cross-button.PNG");
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(153, 0, 204), 2));
@@ -87,14 +93,15 @@ public class MainWindow extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("100 Days Counter");
+		JLabel lblNewLabel = new JLabel("Days Counter ");
 		lblNewLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 16));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(69, 10, 162, 52);
-		lblNewLabel.setBorder(new LineBorder(new Color(204, 0, 204), 3));
+		lblNewLabel.setBounds(69, 24, 162, 28);
+		lblNewLabel.setBorder(new LineBorder(new Color(204, 0, 204), 2));
 		panel.add(lblNewLabel);
 		
 		textFieldDiet = new JTextField();
+		textFieldDiet.setEditable(false);
 		textFieldDiet.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
 		textFieldDiet.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldDiet.setBounds(8, 103, 114, 19);
@@ -102,6 +109,7 @@ public class MainWindow extends JFrame {
 		textFieldDiet.setColumns(10);
 		
 		textFieldNoFap = new JTextField();
+		textFieldNoFap.setEditable(false);
 		textFieldNoFap.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
 		textFieldNoFap.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoFap.setColumns(10);
@@ -109,6 +117,7 @@ public class MainWindow extends JFrame {
 		panel.add(textFieldNoFap);
 		
 		textFieldCoding = new JTextField();
+		textFieldCoding.setEditable(false);
 		textFieldCoding.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
 		textFieldCoding.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldCoding.setColumns(10);
@@ -124,7 +133,20 @@ public class MainWindow extends JFrame {
 				int num = Integer.parseInt(textFieldDiet.getText());
 				num++;
 				textFieldDiet.setText(Integer.toString(num));
-			
+				
+				if(num==100)
+				{
+					try {
+					    File wavFile = new File("images\\believer.wav");
+					    Clip clip = AudioSystem.getClip();
+					    clip.open(AudioSystem.getAudioInputStream(wavFile));
+					    clip.start();
+					   
+					} catch (Exception e1) {
+					    System.out.println(e1);
+					}
+				}
+				
 			}
 		});
 		addDiet.setBackground(new Color(255, 255, 255));
@@ -152,21 +174,87 @@ public class MainWindow extends JFrame {
 		panel.add(deleteDiet);
 		
 		JButton addNoFap = new JButton(icon1);
+		addNoFap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldNoFap.getText());
+				num++;
+				textFieldNoFap.setText(Integer.toString(num));
+				if(num==100)
+				{
+					try {
+					    File wavFile = new File("images\\believer.wav");
+					    Clip clip = AudioSystem.getClip();
+					    clip.open(AudioSystem.getAudioInputStream(wavFile));
+					    clip.start();
+					   
+					} catch (Exception e1) {
+					    System.out.println(e1);
+					}
+				}
+			}
+		});
 		addNoFap.setBackground(new Color(255, 255, 255));
 		addNoFap.setBounds(95, 254, 53, 21);
 		panel.add(addNoFap);
 		
 		JButton deleteNoFap = new JButton(icon2);
+		deleteNoFap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldNoFap.getText());
+				if(num>0)
+				{
+					num--;
+					textFieldNoFap.setText(Integer.toString(num));
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Days cannot be less than zero!");
+				}
+			}
+		});
 		deleteNoFap.setBackground(new Color(255, 255, 255));
 		deleteNoFap.setBounds(156, 254, 53, 21);
 		panel.add(deleteNoFap);
 		
 		JButton addCoding = new JButton(icon1);
+		addCoding.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldCoding.getText());
+				num++;
+				textFieldCoding.setText(Integer.toString(num));
+				if(num==100)
+				{
+					try {
+					    File wavFile = new File("images\\believer.wav");
+					    Clip clip = AudioSystem.getClip();
+					    clip.open(AudioSystem.getAudioInputStream(wavFile));
+					    clip.start();
+					   
+					} catch (Exception e1) {
+					    System.out.println(e1);
+					}
+				}
+			}
+		});
 		addCoding.setBackground(new Color(255, 255, 255));
 		addCoding.setBounds(95, 372, 53, 21);
 		panel.add(addCoding);
 		
 		JButton deleteCoding = new JButton(icon2);
+		deleteCoding.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldCoding.getText());
+				if(num>0)
+				{
+					num--;
+					textFieldCoding.setText(Integer.toString(num));
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Days cannot be less than zero!");
+				}
+			}
+		});
 		deleteCoding.setBackground(new Color(255, 255, 255));
 		deleteCoding.setBounds(156, 372, 53, 21);
 		panel.add(deleteCoding);
@@ -174,6 +262,7 @@ public class MainWindow extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Diet");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Microsoft JhengHei", Font.BOLD, 15));
+		//lblNewLabel_1.setBorder(new LineBorder(new Color(204, 0, 204), 2));
 		lblNewLabel_1.setBounds(50, 72, 43, 21);
 		panel.add(lblNewLabel_1);
 		
@@ -191,6 +280,7 @@ public class MainWindow extends JFrame {
 		
 		textFieldGym = new JTextField();
 		textFieldGym.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
+		textFieldGym.setEditable(false);
 		textFieldGym.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldGym.setColumns(10);
 		textFieldGym.setBounds(178, 103, 114, 19);
@@ -202,6 +292,18 @@ public class MainWindow extends JFrame {
 				int num = Integer.parseInt(textFieldGym.getText());
 				num++;
 				textFieldGym.setText(Integer.toString(num));
+				if(num==100)
+				{
+					try {
+					    File wavFile = new File("images\\believer.wav");
+					    Clip clip = AudioSystem.getClip();
+					    clip.open(AudioSystem.getAudioInputStream(wavFile));
+					    clip.start();
+					   
+					} catch (Exception e1) {
+					    System.out.println(e1);
+					}
+				}
 			}
 		});
 		addGym.setBackground(new Color(255, 255, 255));
@@ -209,12 +311,27 @@ public class MainWindow extends JFrame {
 		panel.add(addGym);
 		
 		JButton deleteGym = new JButton(icon2);
+		deleteGym.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldGym.getText());
+				if(num>0)
+				{
+					num--;
+					textFieldGym.setText(Integer.toString(num));
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Days cannot be less than zero!");
+				}
+			}
+		});
 		deleteGym.setBackground(new Color(255, 255, 255));
 		deleteGym.setBounds(239, 131, 53, 21);
 		panel.add(deleteGym);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Gym");
 		lblNewLabel_1_3.setFont(new Font("Microsoft JhengHei", Font.BOLD, 15));
+		//lblNewLabel_1_3.setBorder(new LineBorder(new Color(204, 0, 204), 2));
 		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_3.setBounds(205, 72, 43, 21);
 		panel.add(lblNewLabel_1_3);
@@ -273,18 +390,28 @@ public class MainWindow extends JFrame {
 				counter.setCoding(Integer.parseInt(textFieldCoding.getText()));
 				
 				serialize(counter);
+				JOptionPane.showMessageDialog(null, "Counter saved!");
 			}
 		});
 		saveProgress.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 13));
 		saveProgress.setBackground(Color.WHITE);
-		saveProgress.setBounds(34, 409, 86, 28);
+		saveProgress.setBounds(62, 409, 86, 28);
 		panel.add(saveProgress);
 		
-		JButton saveProgress_1 = new JButton((Icon) null);
-		saveProgress_1.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 13));
-		saveProgress_1.setBackground(Color.WHITE);
-		saveProgress_1.setBounds(178, 409, 86, 28);
-		panel.add(saveProgress_1);
+		JButton reset = new JButton(icon6);
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			textFieldDiet.setText("0");
+			textFieldGym.setText("0");
+			textFieldCoding.setText("0");
+			textFieldNoFap.setText("0");
+			
+			}
+		});
+		reset.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 13));
+		reset.setBackground(Color.WHITE);
+		reset.setBounds(156, 409, 86, 28);
+		panel.add(reset);
 		
 		
 	}
