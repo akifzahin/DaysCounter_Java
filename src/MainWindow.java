@@ -41,7 +41,8 @@ public class MainWindow extends JFrame {
 	private JTextField textFieldNoFap;
 	private JTextField textFieldCoding;
 	private JTextField textFieldGym;
-
+	private static String counterName; 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -66,7 +67,7 @@ public class MainWindow extends JFrame {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("100 Days Counter");
-		setBounds(1500, 100, 332, 490);
+		setBounds(1500, 100, 332, 504);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 0, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,10 +78,12 @@ public class MainWindow extends JFrame {
 		Icon icon2 = new ImageIcon("images\\minus.PNG");
 		Icon icon3 = new ImageIcon("images\\searching.PNG");
 		Icon icon4 = new ImageIcon("images\\user.PNG");
+		Icon icon5 = new ImageIcon("images\\save.PNG");
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(153, 0, 204), 2));
 		panel.setBackground(new Color(255, 204, 255));
-		panel.setBounds(8, 10, 300, 433);
+		panel.setBounds(8, 10, 300, 447);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -92,52 +95,81 @@ public class MainWindow extends JFrame {
 		panel.add(lblNewLabel);
 		
 		textFieldDiet = new JTextField();
+		textFieldDiet.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
+		textFieldDiet.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldDiet.setBounds(8, 103, 114, 19);
 		panel.add(textFieldDiet);
 		textFieldDiet.setColumns(10);
 		
 		textFieldNoFap = new JTextField();
+		textFieldNoFap.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
+		textFieldNoFap.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoFap.setColumns(10);
 		textFieldNoFap.setBounds(95, 225, 114, 19);
 		panel.add(textFieldNoFap);
 		
 		textFieldCoding = new JTextField();
+		textFieldCoding.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
+		textFieldCoding.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldCoding.setColumns(10);
 		textFieldCoding.setBounds(95, 343, 114, 19);
 		panel.add(textFieldCoding);
 		
 		
 		
-		JButton btnNewButton = new JButton(icon1);
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(8, 131, 53, 21);
-		panel.add(btnNewButton);
+		JButton addDiet = new JButton(icon1);
+		addDiet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int num = Integer.parseInt(textFieldDiet.getText());
+				num++;
+				textFieldDiet.setText(Integer.toString(num));
+			
+			}
+		});
+		addDiet.setBackground(new Color(255, 255, 255));
+		addDiet.setBounds(8, 131, 53, 21);
+		panel.add(addDiet);
 		
 		
-		JButton btnNewButton_1 = new JButton(icon2);
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setBounds(69, 131, 53, 21);
-		panel.add(btnNewButton_1);
+		JButton deleteDiet = new JButton(icon2);
+		deleteDiet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldDiet.getText());
+				if(num>0)
+				{
+					num--;
+					textFieldDiet.setText(Integer.toString(num));
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Days cannot be less than zero!");
+				}
+			}
+		});
+		deleteDiet.setBackground(new Color(255, 255, 255));
+		deleteDiet.setBounds(69, 131, 53, 21);
+		panel.add(deleteDiet);
 		
-		JButton btnNewButton_2 = new JButton(icon1);
-		btnNewButton_2.setBackground(new Color(255, 255, 255));
-		btnNewButton_2.setBounds(95, 254, 53, 21);
-		panel.add(btnNewButton_2);
+		JButton addNoFap = new JButton(icon1);
+		addNoFap.setBackground(new Color(255, 255, 255));
+		addNoFap.setBounds(95, 254, 53, 21);
+		panel.add(addNoFap);
 		
-		JButton btnNewButton_3 = new JButton(icon2);
-		btnNewButton_3.setBackground(new Color(255, 255, 255));
-		btnNewButton_3.setBounds(156, 254, 53, 21);
-		panel.add(btnNewButton_3);
+		JButton deleteNoFap = new JButton(icon2);
+		deleteNoFap.setBackground(new Color(255, 255, 255));
+		deleteNoFap.setBounds(156, 254, 53, 21);
+		panel.add(deleteNoFap);
 		
-		JButton btnNewButton_4 = new JButton(icon1);
-		btnNewButton_4.setBackground(new Color(255, 255, 255));
-		btnNewButton_4.setBounds(95, 372, 53, 21);
-		panel.add(btnNewButton_4);
+		JButton addCoding = new JButton(icon1);
+		addCoding.setBackground(new Color(255, 255, 255));
+		addCoding.setBounds(95, 372, 53, 21);
+		panel.add(addCoding);
 		
-		JButton btnNewButton_4_1 = new JButton(icon2);
-		btnNewButton_4_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_4_1.setBounds(156, 372, 53, 21);
-		panel.add(btnNewButton_4_1);
+		JButton deleteCoding = new JButton(icon2);
+		deleteCoding.setBackground(new Color(255, 255, 255));
+		deleteCoding.setBounds(156, 372, 53, 21);
+		panel.add(deleteCoding);
 		
 		JLabel lblNewLabel_1 = new JLabel("Diet");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -158,19 +190,28 @@ public class MainWindow extends JFrame {
 		panel.add(lblNewLabel_1_2);
 		
 		textFieldGym = new JTextField();
+		textFieldGym.setFont(new Font("Microsoft JhengHei", Font.BOLD, 14));
+		textFieldGym.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldGym.setColumns(10);
-		textFieldGym.setBounds(166, 103, 114, 19);
+		textFieldGym.setBounds(178, 103, 114, 19);
 		panel.add(textFieldGym);
 		
-		JButton btnNewButton_2_1 = new JButton(icon1);
-		btnNewButton_2_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_2_1.setBounds(166, 131, 53, 21);
-		panel.add(btnNewButton_2_1);
+		JButton addGym = new JButton(icon1);
+		addGym.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(textFieldGym.getText());
+				num++;
+				textFieldGym.setText(Integer.toString(num));
+			}
+		});
+		addGym.setBackground(new Color(255, 255, 255));
+		addGym.setBounds(178, 131, 53, 21);
+		panel.add(addGym);
 		
-		JButton btnNewButton_2_2 = new JButton(icon2);
-		btnNewButton_2_2.setBackground(new Color(255, 255, 255));
-		btnNewButton_2_2.setBounds(227, 131, 53, 21);
-		panel.add(btnNewButton_2_2);
+		JButton deleteGym = new JButton(icon2);
+		deleteGym.setBackground(new Color(255, 255, 255));
+		deleteGym.setBounds(239, 131, 53, 21);
+		panel.add(deleteGym);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Gym");
 		lblNewLabel_1_3.setFont(new Font("Microsoft JhengHei", Font.BOLD, 15));
@@ -181,8 +222,8 @@ public class MainWindow extends JFrame {
 		JButton btnNewButton_2_1_1 = new JButton(icon3);
 		btnNewButton_2_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String inputName = JOptionPane.showInputDialog("Enter counter name: ");
-				String path = "src\\counters\\"+inputName+".ser";
+				counterName = JOptionPane.showInputDialog("Enter counter name: ");
+				String path = "src\\counters\\"+counterName+".ser";
 				File file = new File(path);
 				
 				if(file.exists())
@@ -190,8 +231,9 @@ public class MainWindow extends JFrame {
 						
 					MainCounter counter = deserializeCounter(file);
 					textFieldDiet.setText(""+counter.getDiet());
-					
-					
+					textFieldNoFap.setText(""+counter.getNoFap());
+					textFieldGym.setText(""+counter.getGym());
+					textFieldCoding.setText(""+counter.getCoding());
 							
 						
 				}
@@ -208,12 +250,41 @@ public class MainWindow extends JFrame {
 		JButton btnNewButton_2_1_1_1 = new JButton(icon4);
 		btnNewButton_2_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String name = JOptionPane.showInputDialog("Enter counter name: ");
+				MainCounter counter = new MainCounter(name);
+				serialize(counter);
 			}
 		});
 		btnNewButton_2_1_1_1.setBackground(Color.WHITE);
 		btnNewButton_2_1_1_1.setBounds(8, 24, 53, 28);
 		panel.add(btnNewButton_2_1_1_1);
+		
+		JButton saveProgress = new JButton(icon5);
+		saveProgress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String path = "src\\counters\\"+counterName+".ser";
+				File file = new File(path);
+				MainCounter counter = deserializeCounter(file);
+				
+				counter.setDiet(Integer.parseInt(textFieldDiet.getText()));
+				counter.setGym(Integer.parseInt(textFieldGym.getText()));
+				counter.setNoFap(Integer.parseInt(textFieldNoFap.getText()));
+				counter.setCoding(Integer.parseInt(textFieldCoding.getText()));
+				
+				serialize(counter);
+			}
+		});
+		saveProgress.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 13));
+		saveProgress.setBackground(Color.WHITE);
+		saveProgress.setBounds(34, 409, 86, 28);
+		panel.add(saveProgress);
+		
+		JButton saveProgress_1 = new JButton((Icon) null);
+		saveProgress_1.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 13));
+		saveProgress_1.setBackground(Color.WHITE);
+		saveProgress_1.setBounds(178, 409, 86, 28);
+		panel.add(saveProgress_1);
 		
 		
 	}
@@ -270,8 +341,4 @@ public class MainWindow extends JFrame {
 		return counter;
 		
 	}
-	
-
-
-
 }

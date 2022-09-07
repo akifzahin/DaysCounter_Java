@@ -63,12 +63,12 @@ public class MainCounter implements Serializable
 
 
 
-	public int getNofap() {
+	public int getNoFap() {
 		return nofap;
 	}
 
 
-	public void setNofap(int nofap) {
+	public void setNoFap(int nofap) {
 		this.nofap = nofap;
 	}
 
