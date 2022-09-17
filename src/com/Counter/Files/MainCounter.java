@@ -9,7 +9,7 @@ public class MainCounter implements Serializable
 	private int coding;
 	private int diet;
 	private int gym;
-	private int nofap;
+	private int nopmo;
 	
 	
 	public MainCounter(String name) 
@@ -17,7 +17,7 @@ public class MainCounter implements Serializable
 		this.name = name;
 		this.coding = 0;
 		this.diet = 0;
-		this.nofap = 0;
+		this.nopmo = 0;
 		
 	}
 
@@ -64,13 +64,13 @@ public class MainCounter implements Serializable
 
 
 
-	public int getNoFap() {
-		return nofap;
+	public int getNoPMO() {
+		return nopmo;
 	}
 
 
-	public void setNoFap(int nofap) {
-		this.nofap = nofap;
+	public void setNoPMO(int nopmo) {
+		this.nopmo = nopmo;
 	}
 
 

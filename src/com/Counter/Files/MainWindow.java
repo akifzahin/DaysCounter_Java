@@ -175,8 +175,8 @@ public class MainWindow extends JFrame {
 		deleteDiet.setBounds(69, 131, 53, 21);
 		panel.add(deleteDiet);
 		
-		JButton addNoFap = new JButton(icon1);
-		addNoFap.addActionListener(new ActionListener() {
+		JButton addNoPMO = new JButton(icon1);
+		addNoPMO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int num = Integer.parseInt(textFieldNoFap.getText());
 				num++;
@@ -195,12 +195,12 @@ public class MainWindow extends JFrame {
 				}
 			}
 		});
-		addNoFap.setBackground(new Color(255, 255, 255));
-		addNoFap.setBounds(95, 254, 53, 21);
-		panel.add(addNoFap);
+		addNoPMO.setBackground(new Color(255, 255, 255));
+		addNoPMO.setBounds(95, 254, 53, 21);
+		panel.add(addNoPMO);
 		
-		JButton deleteNoFap = new JButton(icon2);
-		deleteNoFap.addActionListener(new ActionListener() {
+		JButton deleteNoPMO = new JButton(icon2);
+		deleteNoPMO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int num = Integer.parseInt(textFieldNoFap.getText());
 				if(num>0)
@@ -214,9 +214,9 @@ public class MainWindow extends JFrame {
 				}
 			}
 		});
-		deleteNoFap.setBackground(new Color(255, 255, 255));
-		deleteNoFap.setBounds(156, 254, 53, 21);
-		panel.add(deleteNoFap);
+		deleteNoPMO.setBackground(new Color(255, 255, 255));
+		deleteNoPMO.setBounds(156, 254, 53, 21);
+		panel.add(deleteNoPMO);
 		
 		JButton addCoding = new JButton(icon1);
 		addCoding.addActionListener(new ActionListener() {
@@ -268,7 +268,7 @@ public class MainWindow extends JFrame {
 		lblNewLabel_1.setBounds(50, 72, 43, 21);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("NoFap");
+		JLabel lblNewLabel_1_1 = new JLabel("NoPMO");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(new Font("Microsoft JhengHei", Font.BOLD, 15));
 		lblNewLabel_1_1.setBounds(110, 185, 86, 19);
@@ -350,7 +350,7 @@ public class MainWindow extends JFrame {
 						
 					MainCounter counter = deserializeCounter(file);
 					textFieldDiet.setText(""+counter.getDiet());
-					textFieldNoFap.setText(""+counter.getNoFap());
+					textFieldNoFap.setText(""+counter.getNoPMO());
 					textFieldGym.setText(""+counter.getGym());
 					textFieldCoding.setText(""+counter.getCoding());
 							
@@ -388,7 +388,7 @@ public class MainWindow extends JFrame {
 				
 				counter.setDiet(Integer.parseInt(textFieldDiet.getText()));
 				counter.setGym(Integer.parseInt(textFieldGym.getText()));
-				counter.setNoFap(Integer.parseInt(textFieldNoFap.getText()));
+				counter.setNoPMO(Integer.parseInt(textFieldNoFap.getText()));
 				counter.setCoding(Integer.parseInt(textFieldCoding.getText()));
 				
 				serialize(counter);
