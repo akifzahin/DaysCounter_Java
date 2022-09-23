@@ -52,19 +52,19 @@ public class MainWindow extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
-					frame.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainWindow frame = new MainWindow();
+//					frame.setVisible(true);
+//					frame.setResizable(false);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -73,7 +73,7 @@ public class MainWindow extends JFrame {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Days Counter");
-		setBounds(1500, 100, 332, 504);
+		setBounds(800, 100, 332, 504);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 0, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
